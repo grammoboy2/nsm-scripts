@@ -5,9 +5,9 @@ various scripts to supplement non session manager (NSM) usage.
 
 requirements: nsmd, pyliblo
 
-**INSTALL.sh** - exports NSM startup settings to `$HOME/.profile` and creates links for the scripts in a specified bin path.
+**INSTALL.sh** - exports NSM startup settings to `$HOME/.xsessionrc` in Debian based distributions and creates links for the scripts in a specified bin path.
 
-**start-nsm** - called from `$HOME/.profile`. starts NSM with the given settings with a log outputted at `/tmp/nsmd.log`.
+**start-nsm** - called from `$HOME/.xsessionrc`. starts NSM with the given settings with a log outputted at `/tmp/nsmd.log`.
 
 **nsm-create-default** - creates and opens a unique empty session. Useful if you want to noodle and decide you like what you hear.
 
