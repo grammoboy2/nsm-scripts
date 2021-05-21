@@ -4,18 +4,18 @@
 
 LOG=/tmp/nsmd.log
 
-if ! $(pgrep nsmd > /dev/null) || [[ "$1" = "restart" ]]; then
+if ! pgrep nsmd > /dev/null || [[ "$1" = "restart" ]]; then
     echo "-----------------------------------------------------" >> $LOG
     if [[ "$1" = "restart" ]]; then 
 	pkill nsmd
 	echo '[start-nsm] restarting nsmd' >> $LOG
     else
-	echo '[start-nsm] beginning nsmd at $(date +"%H:%M:%S on %m/%d/%y")' >> $LOG
+	echo "[start-nsm] beginning nsmd at $(date +"%H:%M:%S on %m/%d/%y")" >> $LOG
     fi
-    if ! $(echo "${NSM_PORT:?}" > /dev/null); then
+	if ! eval "$(echo "${NSM_PORT:?}" > /dev/null)"; then
 	echo '[start-nsm] NSM_PORT is not set' >> $LOG
     fi
-    if ! $(echo "${NSM_DIR:?}" > /dev/null); then
+	if ! eval "$(echo "${NSM_DIR:?}" > /dev/null)"; then
 	echo '[start-nsm] NSM_DIR is not set' >> $LOG
     fi
     nsmd --osc-port="$NSM_PORT" --session-root="$NSM_DIR" >> $LOG 2>&1 &
