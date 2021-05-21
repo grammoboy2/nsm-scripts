@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 
-# This will add some NSM settings to your .profile and create symlinks for the scripts in your bin. There are three options:
+# This will add some NSM settings to your .xsessionrc in Debian based distributions and create symlinks for the scripts in your bin. There are three options:
 # - specify NSM_PORT, NSM_DIR and INSTALL_DIR ahead of time
 # - edit them here
 # - leave them at their defaults
@@ -18,15 +18,19 @@ if [[ -z "$NSM_PORT" ]]; then
     NSM_PORT=18440
 fi
 
-echo "# NSM settings
-export NSM_PORT=18440
-export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/
-export NSM_DIR=$NSM_DIR
-start-nsm
-"  >> "$HOME/.xsessionrc" #needs a check if file exist?
+if [[ -e "$HOME/.xsessionrc" ]]; then #check if file exist
+	echo "# NSM settings
+	export NSM_PORT=18440
+	export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/
+	export NSM_DIR=$NSM_DIR
+	start-nsm
+	"  >> "$HOME/.xsessionrc" 
+else
+	echo "File $HOME/.xsessionrc doesn't exist, add the file please. Aborting now."; 
+	exit 0
+fi
 
-
-cd scripts
+cd scripts || echo "ERROR: folder scripts doesn't exist"; exit 0
 for i in *; do 
     rm "$INSTALL_DIR/$i"
     ln -s "$PWD/$i" "$INSTALL_DIR"
