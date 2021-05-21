@@ -1,3 +1,5 @@
+edited by grammoboy for .xsessionrc May 2021
+
 nsm-scripts
 ===========
 
