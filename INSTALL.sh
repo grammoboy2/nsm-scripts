@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # 
 # This will add some NSM settings to your .profile and create symlinks for the scripts in your bin. There are three options:
 # - specify NSM_PORT, NSM_DIR and INSTALL_DIR ahead of time
@@ -8,13 +8,13 @@
 #
 # e.g. INSTALL_DIR=/home/foo/bin NSM_DIR=/home/foo/bar NSM_PORT=1234 ./INSTALL.sh
 
-if [ -z "$INSTALL_DIR" ]; then
+if [[ -z "$INSTALL_DIR" ]]; then
     INSTALL_DIR="$HOME/bin"
 fi
-if [ -z "$NSM_DIR" ]; then
+if [[ -z "$NSM_DIR" ]]; then
     NSM_DIR="$HOME/NSM Sessions"
 fi
-if [ -z "$NSM_PORT" ]; then
+if [[ -z "$NSM_PORT" ]]; then
     NSM_PORT=18440
 fi
 
@@ -23,7 +23,7 @@ export NSM_PORT=18440
 export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/
 export NSM_DIR=$NSM_DIR
 start-nsm
-"  >> "$HOME/.profile"
+"  >> "$HOME/.xsessionrc" #needs a check if file exist?
 
 
 cd scripts
