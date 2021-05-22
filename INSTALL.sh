@@ -11,9 +11,9 @@
 if [[ -z "$INSTALL_DIR" ]]; then
     INSTALL_DIR="$HOME/bin"
 fi
-if [[ -z "$NSM_DIR" ]]; then
-    NSM_DIR="$HOME/NSM\ Sessions"
-fi
+#if [[ -z "$NSM_DIR" ]]; then
+    NSM_DIR="$HOME/NSM Sessions"
+#fi
 if [[ -z "$NSM_PORT" ]]; then
     NSM_PORT=18440
 fi
