@@ -1,0 +1,51 @@
+#!/usr/bin/env python
+
+import liblo, sys, datetime, os, shutil, time, subprocess
+
+def callback(path, args):
+    pass
+
+def clear_empty_sessions():
+    # maybe clear sessions with blank session.nsm files too
+    server = liblo.Server()
+    server.add_method(None, None, callback)
+    liblo.send(NSM_URL, "/nsm/server/close")
+    server.recv()
+    root = os.listdir(NSM_DIR)
+    for nsm_session in root:
+        nsm_session_path = os.path.join(NSM_DIR,nsm_session)
+        if os.path.isdir(nsm_session_path):
+            contents = [c for c in os.listdir(nsm_session_path) if c[0] != '.']
+            if len(contents) == 0 \
+                    or (len(contents) < 2 and contents[0]=='session.nsm'):
+                    #    or (os.stat(session_file).st_size==0 
+                    #        for session_file in contents 
+                    #        if session_file=='session.nsm'):
+                shutil.rmtree(nsm_session_path)
+
+def create_default_session():
+    date = datetime.datetime.now().strftime("%m.%d.%y")
+    num = 1
+    session = date + " {:02}".format(num)
+
+    while os.path.isdir(os.path.join(NSM_DIR, session)):
+        num += 1
+        session = session[:-2] + "{:02}".format(num)
+
+    liblo.send(NSM_URL, liblo.Message("/nsm/server/new", session))
+    print ("[nsm-create-default] created session", session)
+
+NSM_URL = os.getenv('NSM_URL')
+NSM_DIR = os.getenv('NSM_DIR')
+
+if not NSM_URL:
+    print ("[nsm-create-default] NSM_URL not found. exiting")
+    sys.exit()
+
+try: subprocess.check_output(['pgrep','nsmd'])
+except subprocess.CalledProcessError: 
+    print ("[nsm-create-default] nsmd not running. exiting")
+    sys.exit()
+
+clear_empty_sessions()
+create_default_session()
