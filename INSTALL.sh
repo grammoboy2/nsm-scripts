@@ -30,7 +30,7 @@ else
 	exit 0
 fi
 
-cd scripts || echo "ERROR: folder scripts doesn't exist"; exit 0
+cd scripts || echo "ERROR: folder 'scripts' doesn't exist, can't make symlinks to $INSTALL_DIR"; exit 0
 for i in *; do 
     rm "$INSTALL_DIR/$i"
     ln -s "$PWD/$i" "$INSTALL_DIR"
