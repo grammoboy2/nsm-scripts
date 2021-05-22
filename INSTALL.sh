@@ -20,7 +20,7 @@
 
 if [[ -e "$HOME/.xsessionrc" ]]; then #check if file exist
 	echo "Writing settings to $HOME/.xsessionrc"
-	printf "%s\n%s\n%s\n%s\n%s\n" "# NSM settings" "export NSM_PORT=18440" "export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/" "export NSM_DIR=$NSM_DIR" "start-nsm" >> "$HOME/.xsessionrc" 
+	printf "%s\n%s\n%s\n%s\n%s\n" "# NSM settings" "export NSM_PORT=18440" "export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/" "export NSM_DIR=$NSM_DIR" "bash $INSTALL_DIR/start-nsm" >> "$HOME/.xsessionrc" 
 else
 	echo "File $HOME/.xsessionrc doesn't exist, add the file please. Aborting now."; 
 	exit 0
