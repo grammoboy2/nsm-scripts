@@ -9,14 +9,32 @@
 # e.g. INSTALL_DIR=/home/foo/bin NSM_DIR=/home/foo/bar NSM_PORT=1234 ./INSTALL.sh
 
 #if [[ -z "$INSTALL_DIR" ]]; then
-    INSTALL_DIR="$HOME/bin"
+#    INSTALL_DIR="$HOME/bin"
+#	echo "$INSTALL_DIR"
+#else
+#	echo "INSTALL_DIR not empty"
 #fi
-#if [[ -z "$NSM_DIR" ]]; then
+
+if [[ -z "$INSTALL_DIR" ]]; then
+	INSTALL_DIR="$HOME/bin"
+	echo "$INSTALL_DIR"
+else
+	echo "INSTALL_DIR not empty"
+fi
+
+if [[ -z "$NSM_DIR" ]]; then
     NSM_DIR="$HOME/NSM\ Sessions"
-#fi
-#if [[ -z "$NSM_PORT" ]]; then
+	echo "$NSM_DIR"
+else
+	echo "NSM_DIR not empty"
+fi
+
+if [[ -z "$NSM_PORT" ]]; then
     NSM_PORT=18440
-#fi
+	echo "$NSM_PORT"
+else
+	echo "NSM_PORT not empty"
+fi
 
 if [[ -e "$HOME/.xsessionrc" ]]; then #check if file exist
 	echo "Writing settings to $HOME/.xsessionrc"
