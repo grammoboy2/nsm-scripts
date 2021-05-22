@@ -8,15 +8,15 @@
 #
 # e.g. INSTALL_DIR=/home/foo/bin NSM_DIR=/home/foo/bar NSM_PORT=1234 ./INSTALL.sh
 
-if [[ -z "$INSTALL_DIR" ]]; then
+#if [[ -z "$INSTALL_DIR" ]]; then
     INSTALL_DIR="$HOME/bin"
-fi
-#if [[ -z "$NSM_DIR" ]]; then
-    NSM_DIR="$HOME/NSM Sessions"
 #fi
-if [[ -z "$NSM_PORT" ]]; then
+#if [[ -z "$NSM_DIR" ]]; then
+    NSM_DIR="$HOME/NSM\ Sessions"
+#fi
+#if [[ -z "$NSM_PORT" ]]; then
     NSM_PORT=18440
-fi
+#fi
 
 if [[ -e "$HOME/.xsessionrc" ]]; then #check if file exist
 	echo "Writing settings to $HOME/.xsessionrc"
@@ -28,6 +28,8 @@ fi
 
 cd scripts; echo "cd scripts"
 for i in *; do
-	rm "$INSTALL_DIR/$i"; echo "rm $INSTALL_DIR/$i" 
-	ln -s "$PWD/$i" "$INSTALL_DIR"; echo "ln -s $PWD/$i $INSTALL_DIR"; 
+	rm "$INSTALL_DIR/$i" 
+	echo "rm $INSTALL_DIR/$i" 
+	ln -s "$PWD/$i" "$INSTALL_DIR"
+	echo "ln -s $PWD/$i $INSTALL_DIR"; 
 done
