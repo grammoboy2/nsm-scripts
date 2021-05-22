@@ -8,13 +8,6 @@
 #
 # e.g. INSTALL_DIR=/home/foo/bin NSM_DIR=/home/foo/bar NSM_PORT=1234 ./INSTALL.sh
 
-#if [[ -z "$INSTALL_DIR" ]]; then
-#    INSTALL_DIR="$HOME/bin"
-#	echo "$INSTALL_DIR"
-#else
-#	echo "INSTALL_DIR not empty"
-#fi
-
 if [[ -z "$INSTALL_DIR" ]]; then
 	INSTALL_DIR="$HOME/bin"
 	echo "$INSTALL_DIR"
