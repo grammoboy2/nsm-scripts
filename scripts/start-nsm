@@ -12,10 +12,10 @@ if ! pgrep nsmd > /dev/null || [[ "$1" = "restart" ]]; then #pgrep searches for 
 	else
 		echo "[start-nsm] beginning nsmd at $(date +"%H:%M:%S on %m/%d/%y")" >> $LOG
 	fi
-	if ! eval "$(echo "${NSM_PORT:?}" > /dev/null)"; then
+	if ! [[ "$NSM_PORT" ]]; then
 		echo '[start-nsm] NSM_PORT is not set' >> $LOG
 	fi
-	if ! eval "$(echo "${NSM_DIR:?}" > /dev/null)"; then
+	if ! [[ "$NSM_DIR" ]]; then
 		echo '[start-nsm] NSM_DIR is not set' >> $LOG
 	fi
 	nsmd --osc-port="$NSM_PORT" --session-root="$NSM_DIR" >> $LOG 2>&1 &
