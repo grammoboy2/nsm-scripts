@@ -21,9 +21,9 @@ fi
 if [[ -e "$HOME/.xsessionrc" ]]; then #check if file exist
 	echo "Writing settings to $HOME/.xsessionrc"
 	echo "# NSM settings
-	export NSM_PORT=18440
-	export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/
-	export NSM_DIR=$NSM_DIR
+	export NSM_PORT="18440"
+	export NSM_URL="osc.udp://$HOSTNAME:$NSM_PORT/"
+	export NSM_DIR="$NSM_DIR"
 	start-nsm
 	"  >> "$HOME/.xsessionrc" 
 else
@@ -31,11 +31,8 @@ else
 	exit 0
 fi
 
-cd scripts || echo "ERROR: folder 'scripts' doesn't exist, can't make symlinks to $INSTALL_DIR"; 
-echo "cd scripts"
+cd scriptsi; echo "cd scripts"
 for i in *; do
-	echo "rm $INSTALL_DIR/$i"
-    rm "$INSTALL_DIR/$i"
-	echo "ln -s $PWD/$i $INSTALL_DIR"
-    ln -s "$PWD/$i" "$INSTALL_DIR"
+	rm "$INSTALL_DIR/$i"; echo "rm $INSTALL_DIR/$i" 
+	ln -s "$PWD/$i" "$INSTALL_DIR"; echo "ln -s $PWD/$i $INSTALL_DIR"; 
 done
