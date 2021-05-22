@@ -12,7 +12,7 @@ if [[ -z "$INSTALL_DIR" ]]; then
     INSTALL_DIR="$HOME/bin"
 fi
 if [[ -z "$NSM_DIR" ]]; then
-    NSM_DIR="$HOME/NSM\ Sessions"
+    NSM_DIR="$HOME/NSM Sessions"
 fi
 if [[ -z "$NSM_PORT" ]]; then
     NSM_PORT=18440
@@ -20,13 +20,18 @@ fi
 
 if [[ -e "$HOME/.xsessionrc" ]]; then #check if file exist
 	echo "Writing settings to $HOME/.xsessionrc"
-	printf "%s\n%s\n%s\n%s\n%s\n" "# NSM settings" "export NSM_PORT=18440" "export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/" "export NSM_DIR=$NSM_DIR" "start-nsm" >> "$HOME/.xsessionrc" 
+	echo "# NSM settings
+	export NSM_PORT="18440"
+	export NSM_URL="osc.udp://$HOSTNAME:$NSM_PORT/"
+	export NSM_DIR="$NSM_DIR"
+	start-nsm
+	"  >> "$HOME/.xsessionrc" 
 else
 	echo "File $HOME/.xsessionrc doesn't exist, add the file please. Aborting now."; 
 	exit 0
 fi
 
-cd scripts; echo "cd scripts"
+cd scriptsi; echo "cd scripts"
 for i in *; do
 	rm "$INSTALL_DIR/$i"; echo "rm $INSTALL_DIR/$i" 
 	ln -s "$PWD/$i" "$INSTALL_DIR"; echo "ln -s $PWD/$i $INSTALL_DIR"; 
