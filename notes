@@ -1,2 +1,6 @@
 having it in ~/bin works now, with just callin start-nsm in .xsessionrc. Probably dead symlink.
 
+Hmmm nsmd takes to long to start probably when just running it with start-nsm. Waiting a while and then it works
+
+For some reason it always works when running bash with the full path of the script start-nsm
+
