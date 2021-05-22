@@ -26,7 +26,8 @@ else
 	exit 0
 fi
 
-cd scripts; echo "cd scripts"
+cd scripts || { echo "ERROR: no 'scrips' folder. Can't make the symlinks to $INSTALL_DIR"; exit; }
+echo "cd scripts"
 for i in *; do
 	rm "$INSTALL_DIR/$i" 
 	echo "rm $INSTALL_DIR/$i" 
