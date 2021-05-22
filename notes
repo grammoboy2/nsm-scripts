@@ -1,0 +1,1 @@
+having start-nsm in /usr/local/bin instead of ~/bin works, where having it in ~/bin fails now. Got it to work with the original script yesterday
