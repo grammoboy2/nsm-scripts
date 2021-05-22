@@ -21,9 +21,9 @@ fi
 if [[ -e "$HOME/.xsessionrc" ]]; then #check if file exist
 	echo "Writing settings to $HOME/.xsessionrc"
 	echo "# NSM settings
-	export NSM_PORT=18440
-	export NSM_URL=osc.udp://$HOSTNAME:$NSM_PORT/
-	export NSM_DIR=$NSM_DIR
+	export NSM_PORT="18440"
+	export NSM_URL="osc.udp://$HOSTNAME:$NSM_PORT/"
+	export NSM_DIR="$NSM_DIR"
 	start-nsm
 	"  >> "$HOME/.xsessionrc" 
 else
