@@ -1,1 +1,4 @@
 having start-nsm in /usr/local/bin instead of ~/bin works, where having it in ~/bin fails now. Got it to work with the original script yesterday
+
+maybe something to do with using bash syntax in ~.xsessionrc, which doesn't accept bash specific features. 
+or the script in ~/bin is called too early in the startup process? Just guessing.
